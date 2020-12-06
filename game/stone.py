@@ -1,39 +1,43 @@
-from general.utilities import Blanky, Opposite
-from game.player import player1, player2
-
-class StoneType(Blanky, Opposite):
-	pass
-
-type1 = StoneType("T1")
-type2 = StoneType("T2")
-type1.setOpposite(type2)
-type2.setOpposite(type1)
+import game.functions as functions
 
 
-class Stone:
-	def __init__(self, type, player):
+
+
+
+class FakeStone:
+	def __init__(self, colour, type):
+		self.colour = colour
 		self.type = type
-		self.player = player
+
+	def equals(self, another):
+		return (self is another)
 
 	def __repr__(self):
-		result = "Stone({}, {})".format(self.type, self.player)
-		return result
+		return '"S {}"'.format(functions.getColourAndTypeAsTwoLetters(self.colour, self.type))
 
-t1p1Stone = Stone(type1, player1)
-t1p2Stone = Stone(type1, player2)
-t2p1Stone = Stone(type2, player1)
-t2p2Stone = Stone(type2, player2)
+redWholeStone = FakeStone("red", "whole")
+redHollowStone = FakeStone("red", "hollow")
+blueWholeStone = FakeStone("blue", "whole")
+blueHollowStone = FakeStone("blue", "hollow")
 
-def get(type, player):
-	if type == type1:
-		if player == player1:
-			return t1p1Stone
-		if player == player2:
-			return t1p2Stone
-	if type == type2:
-		if player == player1:
-			return t2p1Stone
-		if player == player2:
-			return t2p2Stone
+def Stone(colour, type):
+	if colour == "red":
+		if type == "whole":
+			return redWholeStone
+		if type == "hollow":
+			return redHollowStone
+	if colour == "blue":
+		if type == "whole":
+			return blueWholeStone
+		if type == "hollow":
+			return blueHollowStone
 
 
+
+
+
+
+
+if __name__ == '__main__':
+	stone = Stone("blue", "whole")
+	print(stone)

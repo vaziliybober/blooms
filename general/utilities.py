@@ -1,15 +1,12 @@
 
-class Opposite:
-	def setOpposite(self, opposite):
-		self.opposite = opposite
+class Opponents:
+	def __init__(self, obj1, obj2):
+		self.obj1 = obj1
+		self.obj2 = obj2
 
+	def opposal(self, obj):
+		if obj is self.obj1:
+			return self.obj2
 
-class Blanky:
-	def __init__(self, repr=None):
-		if repr == None:
-			repr = super().__repr__()
-
-		self.repr = repr
-
-	def __repr__(self):
-		return self.repr
+		if obj is self.obj2:
+			return self.obj1
